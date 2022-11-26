@@ -10,7 +10,11 @@ import { formatCurrency } from '../../utils';
 
 import * as S from './styles';
 
-export const Menu = () => {
+interface MenuProps {
+  onAddToCart: (product: IProduct) => void;
+}
+
+export const Menu = ({ onAddToCart }: MenuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
@@ -25,6 +29,7 @@ export const Menu = () => {
         visible={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         product={selectedProduct}
+        onAddToCart={onAddToCart}
       />
 
       <FlatList
@@ -52,7 +57,7 @@ export const Menu = () => {
               </Text>
             </S.ProductDetails>
 
-            <S.AddToCartButton>
+            <S.AddToCartButton onPress={() => onAddToCart(product)}>
               <CheckCircle />
             </S.AddToCartButton>
           </S.Product>
