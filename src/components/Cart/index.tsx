@@ -5,18 +5,19 @@ import { MinusCircle } from '../Icons/MinusCircle';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { Text } from '../Text';
 import { ICartItem, IProduct } from '../../types';
-import { formatCurrency } from '../../utils';
+import { formatCurrency, getTotalPrice } from '../../utils';
 
 import * as S from './styles';
 
 interface CartProps {
   items: ICartItem[];
   onAdd: (product: IProduct) => void;
-  onRemove: (product: IProduct) => void;
+  onDecrement: (product: IProduct) => void;
 }
 
-export const Cart = ({ items, onAdd, onRemove }: CartProps) => {
+export const Cart = ({ items, onAdd, onDecrement }: CartProps) => {
   const isEmpty = items.length === 0;
+  const total = getTotalPrice(items);
 
   return (
     <>
@@ -59,7 +60,7 @@ export const Cart = ({ items, onAdd, onRemove }: CartProps) => {
                   <PlusCircle />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => onRemove(cartItem.product)}>
+                <TouchableOpacity onPress={() => onDecrement(cartItem.product)}>
                   <MinusCircle />
                 </TouchableOpacity>
               </S.Actions>
@@ -76,7 +77,7 @@ export const Cart = ({ items, onAdd, onRemove }: CartProps) => {
             <>
               <Text color="#664">Total</Text>
               <Text size={20} weight="600">
-                {formatCurrency(120)}
+                {formatCurrency(total)}
               </Text>
             </>
           )}
