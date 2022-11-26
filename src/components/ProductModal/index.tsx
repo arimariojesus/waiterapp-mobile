@@ -12,13 +12,19 @@ interface ProductModalProps {
   visible: boolean;
   onClose: () => void;
   product: IProduct | null;
+  onAddToCart: (product: IProduct) => void;
 }
 
 export const ProductModal = (props: ProductModalProps) => {
-  const { visible, onClose, product } = props;
+  const { visible, onClose, product, onAddToCart } = props;
 
   if (!product) {
     return null;
+  }
+
+  function handleAddToCart() {
+    onAddToCart(product!);
+    onClose();
   }
 
   return (
@@ -75,7 +81,7 @@ export const ProductModal = (props: ProductModalProps) => {
             </Text>
           </S.PriceContainer>
 
-          <Button onPress={() => alert('Adicionado')}>
+          <Button onPress={handleAddToCart}>
             Adicionar ao pedido
           </Button>
         </S.FooterContainer>
