@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native';
 import { useState } from 'react';
 
-import { CheckCircle } from '../Icons/CheckCircle';
+import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
 import { products } from '../../mocks/products';
@@ -58,7 +58,7 @@ export const Menu = ({ onAddToCart }: MenuProps) => {
             </S.ProductDetails>
 
             <S.AddToCartButton onPress={() => onAddToCart(product)}>
-              <CheckCircle />
+              <PlusCircle />
             </S.AddToCartButton>
           </S.Product>
         )}
