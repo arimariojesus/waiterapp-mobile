@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
-import { products } from '../../mocks/products';
 import { IProduct } from '../../types/product';
 import { formatCurrency } from '../../utils';
 
@@ -12,9 +11,10 @@ import * as S from './styles';
 
 interface MenuProps {
   onAddToCart: (product: IProduct) => void;
+  products: IProduct[];
 }
 
-export const Menu = ({ onAddToCart }: MenuProps) => {
+export const Menu = ({ onAddToCart, products }: MenuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
