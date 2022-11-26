@@ -23,7 +23,7 @@ export const OrderConfirmedModal = ({ visible, onConfirm }: OrderConfirmedModalP
           Pedido confirmado
         </Text>
         <Text color="#fff" opacity={0.8} style={{ marginTop: 4 }}>
-          O pedido já entrou na fila de produção
+          O pedido já entrou na fila de produção!
         </Text>
 
         <S.ConfirmButton onPress={onConfirm}>
