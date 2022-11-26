@@ -19,13 +19,20 @@ interface CartProps {
 }
 
 export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder }: CartProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const isEmpty = items.length === 0;
   const total = getTotalPrice(items);
 
-  const handleConfirmOrder = () => {
-    setIsModalVisible(true);
+  const handleConfirmOrder = async () => {
+    try {
+      setIsLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      setIsModalVisible(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleFinishOrder = () => {
@@ -102,7 +109,11 @@ export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder }: CartProps) =
           )}
         </S.TotalContainer>
 
-        <Button disabled={isEmpty} onPress={handleConfirmOrder}>
+        <Button
+          onPress={handleConfirmOrder}
+          disabled={isEmpty}
+          isLoading={isLoading}
+        >
           Confirmar Pedido
         </Button>
       </S.Summary>
