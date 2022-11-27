@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { Button } from '../components/Button';
@@ -9,17 +9,34 @@ import { Empty } from '../components/Icons/Empty';
 import { Menu } from '../components/Menu';
 import { TableModal } from '../components/TableModal';
 import { Text } from '../components/Text';
-import { ICartItem, IProduct } from '../types';
-import { products as productsMock } from '../mocks/products';
+import { api } from '../services/api';
+import { ICartItem, IProduct, ICategory } from '../types';
 
 import * as S from './styles';
 
 export const Main = () => {
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
-  const [products] = useState<IProduct[]>(productsMock);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [categories, setcategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setIsLoading(true);
+        const [categoriesResponse, productsResponse] = await Promise.all([
+          api.get<ICategory[]>('/categories'),
+          api.get<IProduct[]>('/products'),
+        ]);
+        setcategories(categoriesResponse.data);
+        setProducts(productsResponse.data);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
@@ -88,7 +105,7 @@ export const Main = () => {
         ) : (
           <>
             <S.CategoriesContainer>
-              <Categories />
+              <Categories categories={categories} />
             </S.CategoriesContainer>
 
             {products.length > 0 ? (
@@ -109,10 +126,7 @@ export const Main = () => {
       <S.Footer>
         <S.FooterContainer>
           {!selectedTable ? (
-            <Button
-              onPress={() => setIsTableModalVisible(true)}
-              disabled={isLoading}
-            >
+            <Button onPress={() => setIsTableModalVisible(true)} disabled={isLoading}>
               Novo Pedido
             </Button>
           ) : (

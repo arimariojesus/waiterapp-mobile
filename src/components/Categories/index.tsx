@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { Text } from '../Text';
-import { categories } from '../../mocks/categories';
+import { ICategory } from '../../types/category';
 
 import * as S from './styles';
 
-export const Categories = () => {
+interface CategoriesProps {
+  categories: ICategory[];
+}
+
+export const Categories = ({ categories }: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSelectCategory = (categoryId: string) => {
