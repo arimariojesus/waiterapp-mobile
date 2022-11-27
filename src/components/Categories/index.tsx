@@ -8,14 +8,16 @@ import * as S from './styles';
 
 interface CategoriesProps {
   categories: ICategory[];
+  onSelectCategory: (categoryId: string) => void;
 }
 
-export const Categories = ({ categories }: CategoriesProps) => {
+export const Categories = ({ categories, onSelectCategory }: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSelectCategory = (categoryId: string) => {
     const category = categoryId === selectedCategory ? '' : categoryId;
 
+    onSelectCategory(category);
     setSelectedCategory(category);
   };
 

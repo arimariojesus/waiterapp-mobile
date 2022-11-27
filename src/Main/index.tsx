@@ -38,6 +38,15 @@ export const Main = () => {
     })();
   }, []);
 
+  const handleSelectCategory = async (categoryId: string) => {
+    const route = !categoryId
+      ? '/products'
+      : `/categories/${categoryId}/products`;
+
+    const { data } = await api.get<IProduct[]>(route);
+    setProducts(data);
+  };
+
   const handleSaveTable = (table: string) => {
     setSelectedTable(table);
   };
@@ -96,7 +105,10 @@ export const Main = () => {
   return (
     <>
       <S.Container>
-        <Header selectedTable={selectedTable} onCancelOrder={handleResetOrder} />
+        <Header
+          selectedTable={selectedTable}
+          onCancelOrder={handleResetOrder}
+        />
 
         {isLoading ? (
           <S.CenteredContainer>
@@ -105,7 +117,10 @@ export const Main = () => {
         ) : (
           <>
             <S.CategoriesContainer>
-              <Categories categories={categories} />
+              <Categories
+                categories={categories}
+                onSelectCategory={handleSelectCategory}
+              />
             </S.CategoriesContainer>
 
             {products.length > 0 ? (
