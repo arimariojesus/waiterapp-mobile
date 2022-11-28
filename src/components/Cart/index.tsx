@@ -6,6 +6,7 @@ import { OrderConfirmedModal } from '../OrderConfirmedModal';
 import { MinusCircle } from '../Icons/MinusCircle';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { Text } from '../Text';
+import { api } from '../../services/api';
 import { ICartItem, IProduct } from '../../types';
 import { formatCurrency, getTotalPrice } from '../../utils';
 
@@ -16,9 +17,10 @@ interface CartProps {
   onAdd: (product: IProduct) => void;
   onDecrement: (product: IProduct) => void;
   onConfirmOrder: () => void;
+  selectedTable: string;
 }
 
-export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder }: CartProps) => {
+export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder, selectedTable }: CartProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -28,7 +30,17 @@ export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder }: CartProps) =
   const handleConfirmOrder = async () => {
     try {
       setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 3000));
+
+      const payload = {
+        table: selectedTable,
+        products: items.map(item => ({
+          product: item.product._id,
+          quantity: item.quantity,
+        })),
+      };
+
+      await api.post('/orders', payload);
+
       setIsModalVisible(true);
     } finally {
       setIsLoading(false);

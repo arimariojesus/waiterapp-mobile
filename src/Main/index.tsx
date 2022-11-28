@@ -165,6 +165,7 @@ export const Main = () => {
               onAdd={handleAddToCart}
               onDecrement={handleRemoveCartItem}
               onConfirmOrder={handleResetOrder}
+              selectedTable={selectedTable}
             />
           )}
         </S.FooterContainer>
