@@ -20,7 +20,13 @@ interface CartProps {
   selectedTable: string;
 }
 
-export const Cart = ({ items, onAdd, onDecrement, onConfirmOrder, selectedTable }: CartProps) => {
+export const Cart = ({
+  items,
+  onAdd,
+  onDecrement,
+  onConfirmOrder,
+  selectedTable,
+}: CartProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

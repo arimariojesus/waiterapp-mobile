@@ -68,7 +68,9 @@ export const Main = () => {
     }
 
     setCartItems(_cartItems => {
-      const itemIndex = _cartItems.findIndex(item => item.product._id === product._id);
+      const itemIndex = _cartItems.findIndex(
+        item => item.product._id === product._id,
+      );
 
       if (itemIndex < 0) {
         return _cartItems.concat({
@@ -91,7 +93,9 @@ export const Main = () => {
 
   const handleRemoveCartItem = (product: IProduct) => {
     setCartItems(_cartItems => {
-      const itemIndex = _cartItems.findIndex(item => item.product._id === product._id);
+      const itemIndex = _cartItems.findIndex(
+        item => item.product._id === product._id,
+      );
       const newCartItems = [..._cartItems];
       const quantity = newCartItems[itemIndex]?.quantity ?? 0;
 
@@ -149,14 +153,16 @@ export const Main = () => {
                 )}
               </>
             )}
-
           </>
         )}
       </S.Container>
       <S.Footer>
         <S.FooterContainer>
           {!selectedTable ? (
-            <Button onPress={() => setIsTableModalVisible(true)} disabled={isLoading}>
+            <Button
+              onPress={() => setIsTableModalVisible(true)}
+              disabled={isLoading}
+            >
               Novo Pedido
             </Button>
           ) : (

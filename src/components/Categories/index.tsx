@@ -11,7 +11,10 @@ interface CategoriesProps {
   onSelectCategory: (categoryId: string) => void;
 }
 
-export const Categories = ({ categories, onSelectCategory }: CategoriesProps) => {
+export const Categories = ({
+  categories,
+  onSelectCategory,
+}: CategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSelectCategory = (categoryId: string) => {

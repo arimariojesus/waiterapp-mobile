@@ -26,10 +26,7 @@ export const TableModal = (props: TableModalProps) => {
   };
 
   return (
-    <Modal
-      transparent visible={visible}
-      animationType="fade"
-    >
+    <Modal transparent visible={visible} animationType="fade">
       <S.Overlay behavior={isAndroid ? 'height' : 'padding'}>
         <S.ModalBody>
           <S.Header>
@@ -49,10 +46,7 @@ export const TableModal = (props: TableModalProps) => {
               onChangeText={setTable}
             />
 
-            <Button
-              onPress={handleSave}
-              disabled={!table}
-            >
+            <Button onPress={handleSave} disabled={!table}>
               Salvar
             </Button>
           </S.Form>

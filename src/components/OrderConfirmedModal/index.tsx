@@ -10,12 +10,12 @@ interface OrderConfirmedModalProps {
   onConfirm: () => void;
 }
 
-export const OrderConfirmedModal = ({ visible, onConfirm }: OrderConfirmedModalProps) => {
+export const OrderConfirmedModal = ({
+  visible,
+  onConfirm,
+}: OrderConfirmedModalProps) => {
   return (
-    <Modal
-      visible={visible}
-      animationType="fade"
-    >
+    <Modal visible={visible} animationType="fade">
       <S.Container>
         <CheckCircle />
 

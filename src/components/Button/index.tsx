@@ -10,7 +10,12 @@ interface ButtonProps {
   isLoading?: boolean;
 }
 
-export const Button = ({ children, onPress, disabled, isLoading }: ButtonProps) => {
+export const Button = ({
+  children,
+  onPress,
+  disabled,
+  isLoading,
+}: ButtonProps) => {
   return (
     <S.Container onPress={onPress} disabled={disabled || isLoading}>
       <Text weight="600" color="#fff" opacity={isLoading ? 0 : 1}>

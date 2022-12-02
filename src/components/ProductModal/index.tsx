@@ -46,13 +46,19 @@ export const ProductModal = (props: ProductModalProps) => {
 
       <S.ModalBody>
         <S.Header>
-          <Text size={24} weight="600">{product.name}</Text>
-          <Text color="#664" style={{ marginTop: 8 }}>{product.description}</Text>
+          <Text size={24} weight="600">
+            {product.name}
+          </Text>
+          <Text color="#664" style={{ marginTop: 8 }}>
+            {product.description}
+          </Text>
         </S.Header>
 
         {product.ingredients.length > 0 && (
           <S.IngredientsContainer>
-            <Text weight="600" color="#664">Ingredientes</Text>
+            <Text weight="600" color="#664">
+              Ingredientes
+            </Text>
 
             <FlatList
               data={product.ingredients}
@@ -81,9 +87,7 @@ export const ProductModal = (props: ProductModalProps) => {
             </Text>
           </S.PriceContainer>
 
-          <Button onPress={handleAddToCart}>
-            Adicionar ao pedido
-          </Button>
+          <Button onPress={handleAddToCart}>Adicionar ao pedido</Button>
         </S.FooterContainer>
       </S.Footer>
     </Modal>
