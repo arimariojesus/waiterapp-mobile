@@ -2,10 +2,20 @@
   "env": {
     "es2021": true
   },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier",
+    "@typescript-eslint/eslint-plugin"
+  ],
   "extends": [
-    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "overrides": [
   ],
@@ -14,12 +24,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/extensions": [".ts", ".tsx", ".js", ".jsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".js", ".jsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
   "rules": {
-    "react/react-in-jsx-scope": "off",
     "indent": [
       "error",
       2
@@ -35,6 +54,18 @@
     "semi": [
       "error",
       "always"
-    ]
+    ],
+
+    /* React Options */
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/prop-types": 0,
+
+    /* React Hooks Options */
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
