@@ -13,7 +13,7 @@ interface WaiterContextData {
 
   handleSelectCategory: (categoryId: string) => Promise<void>;
   handleSaveTable: (table: string) => void;
-  handleResetOrder: () => void;
+  resetTable: () => void;
 }
 
 export const WaiterContext = createContext<WaiterContextData | null>(null);
@@ -65,7 +65,7 @@ export const WaiterProvider = ({ children }: WaiterProviderProps) => {
     setSelectedTable(table);
   };
 
-  const handleResetOrder = () => {
+  const resetTable = () => {
     setSelectedTable('');
   };
 
@@ -81,7 +81,7 @@ export const WaiterProvider = ({ children }: WaiterProviderProps) => {
 
         handleSelectCategory,
         handleSaveTable,
-        handleResetOrder,
+        resetTable,
       }}
     >
       {children}

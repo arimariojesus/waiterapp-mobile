@@ -25,10 +25,10 @@ export const Main = () => {
     categories,
     handleSelectCategory,
     handleSaveTable,
-    handleResetOrder,
+    resetTable,
   } = useWaiter();
 
-  const { items, addItem, removeItem } = useCart();
+  const { items, addItem, removeItem, resetItems } = useCart();
 
   const handleAddToCart = (product: IProduct) => {
     if (!selectedTable) {
@@ -40,6 +40,11 @@ export const Main = () => {
 
   const handleRemoveCartItem = (product: IProduct) => {
     removeItem(product);
+  };
+
+  const handleResetOrder = () => {
+    resetTable();
+    resetItems();
   };
 
   return (
