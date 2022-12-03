@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { Button } from '../components/Button';
@@ -9,58 +9,25 @@ import { Empty } from '../components/Icons/Empty';
 import { Menu } from '../components/Menu';
 import { TableModal } from '../components/TableModal';
 import { Text } from '../components/Text';
-import { api } from '../services/api';
-import { ICartItem, IProduct, ICategory } from '../types';
+import { useWaiter } from '../hooks';
+import { ICartItem, IProduct } from '../types';
 
 import * as S from './styles';
 
 export const Main = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
-  const [selectedTable, setSelectedTable] = useState('');
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [categories, setcategories] = useState<ICategory[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        const [categoriesResponse, productsResponse] = await Promise.all([
-          api.get<ICategory[]>('/categories'),
-          api.get<IProduct[]>('/products'),
-        ]);
-        setcategories(categoriesResponse.data);
-        setProducts(productsResponse.data);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-
-  const handleSelectCategory = async (categoryId: string) => {
-    try {
-      setIsLoadingProducts(true);
-      const route = !categoryId
-        ? '/products'
-        : `/categories/${categoryId}/products`;
-
-      const { data } = await api.get<IProduct[]>(route);
-      setProducts(data);
-    } finally {
-      setIsLoadingProducts(false);
-    }
-  };
-
-  const handleSaveTable = (table: string) => {
-    setSelectedTable(table);
-  };
-
-  const handleResetOrder = () => {
-    setSelectedTable('');
-    setCartItems([]);
-  };
+  const {
+    isLoading,
+    isLoadingProducts,
+    selectedTable,
+    products,
+    categories,
+    handleSelectCategory,
+    handleSaveTable,
+    handleResetOrder,
+  } = useWaiter();
 
   const handleAddToCart = (product: IProduct) => {
     if (!selectedTable) {
