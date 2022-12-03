@@ -6,9 +6,9 @@ import { OrderConfirmedModal } from '../OrderConfirmedModal';
 import { MinusCircle } from '../Icons/MinusCircle';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { Text } from '../Text';
-import { api } from '../../services/api';
+import { api, baseURL } from '../../services/api';
 import { ICartItem, IProduct } from '../../types';
-import { formatCurrency, getTotalPrice } from '../../utils';
+import { formatCurrency, getTotalPrice, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
 
@@ -76,7 +76,7 @@ export const Cart = ({
               <S.ProductContainer>
                 <S.ProductImage
                   source={{
-                    uri: `http://10.0.2.2:3333/uploads/${cartItem.product.imagePath}`,
+                    uri: getAssetsURI(baseURL, cartItem.product.imagePath),
                   }}
                 />
 

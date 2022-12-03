@@ -3,8 +3,9 @@ import { FlatList, Modal } from 'react-native';
 import { Button } from '../Button';
 import { Text } from '../Text';
 import { Close } from '../Icons/Close';
+import { baseURL } from '../../services/api';
 import { IProduct } from '../../types/product';
-import { formatCurrency } from '../../utils';
+import { formatCurrency, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
 
@@ -36,7 +37,7 @@ export const ProductModal = (props: ProductModalProps) => {
     >
       <S.Image
         source={{
-          uri: `http://10.0.2.2:3333/uploads/${product.imagePath}`,
+          uri: getAssetsURI(baseURL, product.imagePath),
         }}
       >
         <S.CloseButton onPress={onClose}>

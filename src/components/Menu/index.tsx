@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
+import { baseURL } from '../../services/api';
 import { IProduct } from '../../types/product';
-import { formatCurrency } from '../../utils';
+import { formatCurrency, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
 
@@ -43,7 +44,7 @@ export const Menu = ({ onAddToCart, products }: MenuProps) => {
             <S.ProductImage
               resizeMode="cover"
               source={{
-                uri: `http://10.0.2.2:3333/uploads/${product.imagePath}`,
+                uri: getAssetsURI(baseURL, product.imagePath),
               }}
             />
 
