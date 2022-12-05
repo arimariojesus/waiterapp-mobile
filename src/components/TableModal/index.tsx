@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
 
 import { Button } from '../Button';
-import { Close } from '../Icons/Close';
+import { Close } from '../Icons';
 import { Text } from '../Text';
 import { isAndroid } from '../../constants';
 

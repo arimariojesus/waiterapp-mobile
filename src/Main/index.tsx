@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { Cart } from '../components/Cart';
 import { Categories } from '../components/Categories';
 import { Header } from '../components/Header';
-import { Empty } from '../components/Icons/Empty';
+import { Empty } from '../components/Icons';
 import { Menu } from '../components/Menu';
 import { TableModal } from '../components/TableModal';
 import { Text } from '../components/Text';

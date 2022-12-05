@@ -3,8 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '../Button';
 import { OrderConfirmedModal } from '../OrderConfirmedModal';
-import { MinusCircle } from '../Icons/MinusCircle';
-import { PlusCircle } from '../Icons/PlusCircle';
+import { MinusCircle, PlusCircle } from '../Icons';
 import { Text } from '../Text';
 import { api, baseURL } from '../../services/api';
 import { ICartItem, IProduct } from '../../types';

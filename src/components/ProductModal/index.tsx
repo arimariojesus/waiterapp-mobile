@@ -2,7 +2,7 @@ import { FlatList, Modal } from 'react-native';
 
 import { Button } from '../Button';
 import { Text } from '../Text';
-import { Close } from '../Icons/Close';
+import { Close } from '../Icons';
 import { baseURL } from '../../services/api';
 import { IProduct } from '../../types/product';
 import { formatCurrency, getAssetsURI } from '../../utils';

@@ -1,6 +1,6 @@
 import { Modal } from 'react-native';
 
-import { CheckCircle } from '../Icons/CheckCircle';
+import { CheckCircle } from '../Icons';
 import { Text } from '../Text';
 
 import * as S from './styles';

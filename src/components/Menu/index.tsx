@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native';
 import { useState } from 'react';
 
-import { PlusCircle } from '../Icons/PlusCircle';
+import { PlusCircle } from '../Icons';
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
 import { baseURL } from '../../services/api';
