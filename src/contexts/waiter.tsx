@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 
-import { api } from '../services/api';
+import { CategoriesService, ProductsService } from '../services';
 import { ICategory, IProduct } from '../types';
 
 interface WaiterContextData {
@@ -35,12 +35,12 @@ export const WaiterProvider = ({ children }: WaiterProviderProps) => {
         setIsLoading(true);
 
         const [categoriesResponse, productsResponse] = await Promise.all([
-          api.get<ICategory[]>('/categories'),
-          api.get<IProduct[]>('/products'),
+          CategoriesService.getAll(),
+          ProductsService.getAll(),
         ]);
 
-        setcategories(categoriesResponse.data);
-        setProducts(productsResponse.data);
+        setcategories(categoriesResponse);
+        setProducts(productsResponse);
       } finally {
         setIsLoading(false);
       }
@@ -50,11 +50,13 @@ export const WaiterProvider = ({ children }: WaiterProviderProps) => {
   const handleSelectCategory = useCallback(async (categoryId: string) => {
     try {
       setIsLoadingProducts(true);
-      const route = !categoryId
-        ? '/products'
-        : `/categories/${categoryId}/products`;
 
-      const { data } = await api.get<IProduct[]>(route);
+      const productsPromise = !categoryId
+        ? ProductsService.getAll()
+        : ProductsService.getByCategoryId(categoryId);
+
+      const data = await productsPromise;
+
       setProducts(data);
     } finally {
       setIsLoadingProducts(false);

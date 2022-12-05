@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { OrderConfirmedModal } from '../OrderConfirmedModal';
 import { MinusCircle, PlusCircle } from '../Icons';
 import { Text } from '../Text';
-import { api, baseURL } from '../../services/api';
+import { baseURL, OrdersService } from '../../services';
 import { ICartItem, IProduct } from '../../types';
 import { formatCurrency, getTotalPrice, getAssetsURI } from '../../utils';
 
@@ -44,7 +44,7 @@ export const Cart = ({
         })),
       };
 
-      await api.post('/orders', payload);
+      await OrdersService.add(payload);
 
       setIsModalVisible(true);
     } finally {
