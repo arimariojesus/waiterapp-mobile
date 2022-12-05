@@ -19,5 +19,4 @@ class Orders {
   }
 }
 
-const OrdersService = new Orders();
-export default OrdersService;
+export const OrdersService = new Orders();

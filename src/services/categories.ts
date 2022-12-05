@@ -12,5 +12,4 @@ class Categories {
   }
 }
 
-const CategoriesService = new Categories();
-export default CategoriesService;
+export const CategoriesService = new Categories();

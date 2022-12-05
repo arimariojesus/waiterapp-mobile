@@ -25,5 +25,4 @@ class Products {
   }
 }
 
-const ProductsService = new Products();
-export default ProductsService;
+export const ProductsService = new Products();
