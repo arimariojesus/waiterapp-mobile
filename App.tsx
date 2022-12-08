@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 
 import { Main } from './src/Main';
-import { CartProvider, WaiterProvider } from './src/contexts';
+import { CartProvider, WaiterProvider, AppThemeProvider } from './src/contexts';
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
@@ -19,11 +19,13 @@ export default function App() {
   }
 
   return (
-    <WaiterProvider>
-      <CartProvider>
-        <StatusBar style="dark" />
-        <Main />
-      </CartProvider>
-    </WaiterProvider>
+    <AppThemeProvider>
+      <WaiterProvider>
+        <CartProvider>
+          <StatusBar style="auto" />
+          <Main />
+        </CartProvider>
+      </WaiterProvider>
+    </AppThemeProvider>
   );
 }
