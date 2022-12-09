@@ -1,4 +1,5 @@
 import { ActivityIndicator } from 'react-native';
+import { useTheme } from '../../hooks';
 import { Text } from '../Text';
 
 import * as S from './styles';
@@ -16,14 +17,19 @@ export const Button = ({
   disabled,
   isLoading,
 }: ButtonProps) => {
+  const { theme } = useTheme();
+
   return (
     <S.Container onPress={onPress} disabled={disabled || isLoading}>
-      <Text weight="600" color="#fff" opacity={isLoading ? 0 : 1}>
+      <Text weight="600" color={theme.color.white} opacity={isLoading ? 0 : 1}>
         {children}
       </Text>
 
       {isLoading && (
-        <ActivityIndicator color="#fff" style={{ position: 'absolute' }} />
+        <ActivityIndicator
+          color={theme.color.white}
+          style={{ position: 'absolute' }}
+        />
       )}
     </S.Container>
   );

@@ -18,7 +18,7 @@ export const CloseButton = styled.TouchableOpacity`
 `;
 
 export const ModalBody = styled.View`
-  background: #fafafa;
+  background: ${({ theme }) => theme.color.background};
   flex: 1;
   padding: 32px 24px 0;
 `;
@@ -41,7 +41,7 @@ export const Ingredient = styled.View`
 
 export const Footer = styled.View`
   min-height: 110px;
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   padding: 16px 24px;
 `;
 

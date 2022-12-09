@@ -1,4 +1,5 @@
 import { TouchableOpacity } from 'react-native';
+import { useTheme } from '../../hooks';
 import { Text } from '../Text';
 
 import * as S from './styles';
@@ -9,6 +10,8 @@ interface HeaderProps {
 }
 
 export const Header = ({ selectedTable, onCancelOrder }: HeaderProps) => {
+  const { theme } = useTheme();
+
   return (
     <S.Container>
       {!selectedTable ? (
@@ -29,14 +32,14 @@ export const Header = ({ selectedTable, onCancelOrder }: HeaderProps) => {
             </Text>
 
             <TouchableOpacity onPress={onCancelOrder}>
-              <Text color="#d73035" weight="600" size={14}>
+              <Text color={theme.color.primary} weight="600" size={14}>
                 cancelar pedido
               </Text>
             </TouchableOpacity>
           </S.OrderHeader>
 
           <S.Table>
-            <Text color="#664">Mesa {selectedTable}</Text>
+            <Text color={theme.color.grey}>Mesa {selectedTable}</Text>
           </S.Table>
         </S.Content>
       )}

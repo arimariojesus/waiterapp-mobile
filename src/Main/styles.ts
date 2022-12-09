@@ -7,7 +7,7 @@ export const Container = styled.SafeAreaView`
   margin-top: ${isAndroid ? `${StatusBar.currentHeight}px` : '0'};
 
   flex: 1;
-  background: #fafafa;
+  background: ${({ theme }) => theme.color.background};
 `;
 
 export const CategoriesContainer = styled.View`
@@ -21,7 +21,7 @@ export const MenuContainer = styled.View`
 
 export const Footer = styled.View`
   /* min-height: 110px; */
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   padding: 16px 24px;
 `;
 

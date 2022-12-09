@@ -14,7 +14,7 @@ export const Content = styled.View``;
 
 export const Table = styled.View`
   padding: 16px;
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   border-radius: 1px solid rgba(204, 204, 204, 0.3);
   border-radius: 8px;
   margin-top: 24px;

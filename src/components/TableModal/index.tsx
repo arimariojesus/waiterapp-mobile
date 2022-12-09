@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { Close } from '../Icons';
 import { Text } from '../Text';
 import { isAndroid } from '../../constants';
+import { useTheme } from '../../hooks';
 
 import * as S from './styles';
 
@@ -18,6 +19,8 @@ export const TableModal = (props: TableModalProps) => {
   const { visible, onClose, onSave } = props;
 
   const [table, setTable] = useState('');
+
+  const { theme } = useTheme();
 
   const handleSave = () => {
     setTable('');
@@ -33,7 +36,7 @@ export const TableModal = (props: TableModalProps) => {
             <Text weight="600">Informe a mesa</Text>
 
             <TouchableOpacity onPress={onClose}>
-              <Close color="#664" />
+              <Close color={theme.color.grey} />
             </TouchableOpacity>
           </S.Header>
 
@@ -41,7 +44,7 @@ export const TableModal = (props: TableModalProps) => {
             <S.Input
               value={table}
               placeholder="Número da mesa"
-              placeholderTextColor="#664"
+              placeholderTextColor={theme.color.grey}
               keyboardType="number-pad"
               onChangeText={setTable}
             />

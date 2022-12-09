@@ -9,13 +9,15 @@ import { Empty } from '../components/Icons';
 import { Menu } from '../components/Menu';
 import { TableModal } from '../components/TableModal';
 import { Text } from '../components/Text';
-import { useWaiter, useCart } from '../hooks';
+import { useWaiter, useCart, useTheme } from '../hooks';
 import { IProduct } from '../types';
 
 import * as S from './styles';
 
 export const Main = () => {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+
+  const { theme } = useTheme();
 
   const {
     isLoading,
@@ -57,7 +59,7 @@ export const Main = () => {
 
         {isLoading ? (
           <S.CenteredContainer>
-            <ActivityIndicator color="#d73035" size="large" />
+            <ActivityIndicator color={theme.color.primary} size="large" />
           </S.CenteredContainer>
         ) : (
           <>
@@ -70,7 +72,7 @@ export const Main = () => {
 
             {isLoadingProducts ? (
               <S.CenteredContainer>
-                <ActivityIndicator color="#d73035" size="large" />
+                <ActivityIndicator color={theme.color.primary} size="large" />
               </S.CenteredContainer>
             ) : (
               <>
@@ -81,7 +83,7 @@ export const Main = () => {
                 ) : (
                   <S.CenteredContainer>
                     <Empty />
-                    <Text color="#664" style={{ marginTop: 24 }}>
+                    <Text color={theme.color.grey} style={{ marginTop: 24 }}>
                       Nenhum produto foi encontrado!
                     </Text>
                   </S.CenteredContainer>

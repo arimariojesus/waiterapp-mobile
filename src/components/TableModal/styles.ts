@@ -9,7 +9,7 @@ export const Overlay = styled.KeyboardAvoidingView`
 `;
 
 export const ModalBody = styled.View`
-  background: #fafafa;
+  background: ${({ theme }) => theme.color.white};
   border-radius: 8px;
   padding: 24px;
 `;
@@ -25,7 +25,7 @@ export const Form = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   border: 1px solid rgba(204, 204, 204, 0.5);
   border-radius: 8px;
   padding: 16px;

@@ -10,6 +10,7 @@ import { ICartItem, IProduct } from '../../types';
 import { formatCurrency, getTotalPrice, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
+import { useTheme } from '../../hooks';
 
 interface CartProps {
   items: ICartItem[];
@@ -28,6 +29,8 @@ export const Cart = ({
 }: CartProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const { theme } = useTheme();
 
   const isEmpty = items.length === 0;
   const total = getTotalPrice(items);
@@ -80,7 +83,7 @@ export const Cart = ({
                 />
 
                 <S.QuantityContainer>
-                  <Text size={14} color="#664">
+                  <Text size={14} color={theme.color.grey}>
                     {cartItem.quantity}x
                   </Text>
                 </S.QuantityContainer>
@@ -89,7 +92,7 @@ export const Cart = ({
                   <Text size={14} weight="600">
                     {cartItem.product.name}
                   </Text>
-                  <Text size={14} color="#664">
+                  <Text size={14} color={theme.color.grey}>
                     {formatCurrency(cartItem.product.price)}
                   </Text>
                 </S.ProductDetails>
@@ -115,10 +118,10 @@ export const Cart = ({
       <S.Summary>
         <S.TotalContainer>
           {isEmpty ? (
-            <Text color="#664">Seu carrinho está vazio</Text>
+            <Text color={theme.color.grey}>Seu carrinho está vazio</Text>
           ) : (
             <>
-              <Text color="#664">Total</Text>
+              <Text color={theme.color.grey}>Total</Text>
               <Text size={20} weight="600">
                 {formatCurrency(total)}
               </Text>

@@ -9,6 +9,7 @@ import { IProduct } from '../../types/product';
 import { formatCurrency, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
+import { useTheme } from '../../hooks';
 
 interface MenuProps {
   onAddToCart: (product: IProduct) => void;
@@ -18,6 +19,8 @@ interface MenuProps {
 export const Menu = ({ onAddToCart, products }: MenuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
+
+  const { theme } = useTheme();
 
   const handleOpenModal = (product: IProduct) => {
     setSelectedProduct(product);
@@ -50,7 +53,11 @@ export const Menu = ({ onAddToCart, products }: MenuProps) => {
 
             <S.ProductDetails>
               <Text weight="600">{product.name}</Text>
-              <Text size={14} color="#664" style={{ marginVertical: 8 }}>
+              <Text
+                size={14}
+                color={theme.color.grey}
+                style={{ marginVertical: 8 }}
+              >
                 {product.description}
               </Text>
               <Text size={14} weight="600">

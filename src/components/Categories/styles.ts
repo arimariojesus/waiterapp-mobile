@@ -7,7 +7,7 @@ export const Category = styled.TouchableOpacity`
 `;
 
 export const Icon = styled.View`
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   width: 44px;
   height: 44px;
   border-radius: 22px;

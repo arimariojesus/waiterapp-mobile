@@ -8,6 +8,7 @@ import { IProduct } from '../../types/product';
 import { formatCurrency, getAssetsURI } from '../../utils';
 
 import * as S from './styles';
+import { useTheme } from '../../hooks';
 
 interface ProductModalProps {
   visible: boolean;
@@ -18,6 +19,8 @@ interface ProductModalProps {
 
 export const ProductModal = (props: ProductModalProps) => {
   const { visible, onClose, product, onAddToCart } = props;
+
+  const { theme } = useTheme();
 
   if (!product) {
     return null;
@@ -50,14 +53,14 @@ export const ProductModal = (props: ProductModalProps) => {
           <Text size={24} weight="600">
             {product.name}
           </Text>
-          <Text color="#664" style={{ marginTop: 8 }}>
+          <Text color={theme.color.grey} style={{ marginTop: 8 }}>
             {product.description}
           </Text>
         </S.Header>
 
         {product.ingredients.length > 0 && (
           <S.IngredientsContainer>
-            <Text weight="600" color="#664">
+            <Text weight="600" color={theme.color.grey}>
               Ingredientes
             </Text>
 
@@ -69,7 +72,11 @@ export const ProductModal = (props: ProductModalProps) => {
               renderItem={({ item: ingredient }) => (
                 <S.Ingredient>
                   <Text>{ingredient.icon}</Text>
-                  <Text size={14} color="#664" style={{ marginLeft: 20 }}>
+                  <Text
+                    size={14}
+                    color={theme.color.grey}
+                    style={{ marginLeft: 20 }}
+                  >
                     {ingredient.name}
                   </Text>
                 </S.Ingredient>
@@ -82,7 +89,7 @@ export const ProductModal = (props: ProductModalProps) => {
       <S.Footer>
         <S.FooterContainer>
           <S.PriceContainer>
-            <Text color="#664">Preço</Text>
+            <Text color={theme.color.grey}>Preço</Text>
             <Text size={20} weight="600">
               {formatCurrency(product.price)}
             </Text>
