@@ -1,6 +1,12 @@
-import React, { createContext, PropsWithChildren, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 import { useColorScheme } from 'react-native';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { ThemeMode } from '../@types/styled';
 import theme from '../styles/theme';
@@ -20,7 +26,7 @@ export const AppThemeProvider = ({ children }: PropsWithChildren) => {
     return 'light';
   });
 
-  const toggleTheme = React.useCallback(() => {
+  const toggleTheme = React.useCallback(async () => {
     setCurrentTheme(_theme => {
       const newTheme = _theme === 'light' ? 'dark' : 'light';
       return newTheme;
@@ -39,6 +45,22 @@ export const AppThemeProvider = ({ children }: PropsWithChildren) => {
     }),
     [currentTheme, toggleTheme],
   );
+
+  useEffect(() => {
+    (async () => {
+      const storedTheme = await AsyncStorage.getItem('waiterapp@theme');
+      if (storedTheme) {
+        const theme = storedTheme === 'dark' ? 'dark' : 'light';
+        setCurrentTheme(theme);
+      }
+    })();
+  }, [currentScheme]);
+
+  useEffect(() => {
+    (async () => {
+      await AsyncStorage.setItem('waiterapp@theme', currentTheme);
+    })();
+  }, [currentTheme]);
 
   return (
     <ThemeProvider theme={memorizedValue.theme}>
